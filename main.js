@@ -18,8 +18,8 @@ function createMainWindow() {
     winArray['index'].webContents.openDevTools();
 }
 
-function createTestWindow(){
-    winArray['test'] = new BrowserWindow({
+function createAdsWindow(){
+    winArray['ads'] = new BrowserWindow({
         width: 1200,
         height: 900,
         icon: path.join(__dirname, 'assets/img/kaamelott-logo.jpg'),
@@ -30,8 +30,8 @@ function createTestWindow(){
         }
     })
 
-    winArray['test'].loadFile(path.join(__dirname, 'src/page/test/index.html')).then(r => console.log(r));
-    winArray['test'].webContents.openDevTools();
+    winArray['ads'].loadFile(path.join(__dirname, 'src/page/ads/index.html')).then(r => console.log(r));
+    winArray['ads'].webContents.openDevTools();
 }
 
 
@@ -55,8 +55,8 @@ app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit()
 })
 
-ipcMain.on('page-test', (event, args) => {
-    createTestWindow();
+ipcMain.on('page-ads', (event, args) => {
+    createAdsWindow();
     winArray['index'].close();
 });
 
