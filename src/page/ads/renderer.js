@@ -17,7 +17,7 @@ document.querySelector('#home')
 function getAd() {
     const token = localStorage.getItem('token');
     console.log("token: " + token)
-    fetch( 'http://localhost:8000/api/ad/1',{
+    fetch( 'http://localhost:8000/api/ad/25',{
         headers: {
             'Accept': 'application/json',
             'Content': 'application/json',
