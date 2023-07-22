@@ -17,7 +17,7 @@ document.querySelector('#home')
 function getAd() {
     const token = localStorage.getItem('token');
     console.log("token: " + token)
-    fetch( 'http://localhost:8000/api/ad/25',{
+    fetch( 'http://localhost:8000/api/ads',{
         headers: {
             'Accept': 'application/json',
             'Content': 'application/json',
@@ -29,8 +29,8 @@ function getAd() {
 
     }).then((data) => {
 
-        console.log(data.title)
-        console.log(data.description)
+        console.log(data)
+        // console.log(data.description)
 
         let title = document.querySelector('#title')
         title.innerHTML = data.title
