@@ -8,6 +8,22 @@ const { ipcRenderer } = require('electron');
 
 console.log('====>  ad/renderer js  <====  ')
 
+
+function afficherDonnees(data) {
+    const apiDataList = document.getElementById('apiDataList');
+    apiDataList.innerHTML = ''; // Effacer les données précédentes
+
+    data.forEach((item, index) => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+            <strong>Item ${index} :</strong><br>
+            Titre : ${item.title}<br>
+            Description : ${item.description}<br>
+            Diplôme : ${item.degree.title}<br><br>
+        `;
+        apiDataList.appendChild(listItem);
+    });
+}
 document.querySelector('#home')
     .addEventListener('click', () => {
         ipcRenderer.send('page-home');
@@ -30,6 +46,7 @@ function getAd() {
     }).then((data) => {
 
         console.log(data)
+        afficherDonnees(data);
         // console.log(data.description)
 
         let title = document.querySelector('#title')
@@ -44,6 +61,7 @@ function getAd() {
         console.log(data);
         // localStorage.setItem('token', data.token);
         // ipcRenderer.send('token', data.token); // Envoie du token à la fenêtre de rendu principale
+        
       })
       .catch((error) => {
         console.error('Error:', error);
